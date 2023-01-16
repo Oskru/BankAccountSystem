@@ -12,7 +12,8 @@ public class BankAccountSystem {
             System.out.println("1. Deposit");
             System.out.println("2. Withdraw");
             System.out.println("3. Check balance");
-            System.out.println("4. Exit");
+            System.out.println("4. Check exchange rate");
+            System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
             int choice = input.nextInt();
             input.nextLine();
@@ -65,6 +66,16 @@ public class BankAccountSystem {
                     }
                     break;
                 case 4:
+                    System.out.print("Enter currency code (e.g EUR, JPY): ");
+                    String currency = input.nextLine();
+                    try {
+                        double rate = ExchangeRateAPI.getExchangeRate(currency);
+                        System.out.println("1 USD = " + rate + " " + currency);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case 5:
                     System.out.println("Thank you for using our system.");
                     return;
                 default:
