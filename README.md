@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a simple Java GUI project that simulates a basic bank account system, where a user can create different types of accounts (e.g savings, checking) and perform basic transactions (e.g deposit, withdraw). The project demonstrates the use of polymorphism, inheritance, interfaces, abstract classes, and casting. It also allows the user to check exchange rates of different currencies using an external API.
+This is a simple Java console application project that simulates a basic bank account system, where a user can create different types of accounts (e.g savings, checking) and perform basic transactions (e.g deposit, withdraw). The project demonstrates the use of polymorphism, inheritance, interfaces, abstract classes, and casting. It also allows the user to check exchange rates of different currencies using an external API.
 
 ## How to use
 
@@ -10,7 +10,7 @@ This is a simple Java GUI project that simulates a basic bank account system, wh
 2. Open the project in your preferred Java IDE.
 3. Run the `BankAccountSystem` class.
 4. Follow the prompts to create and manage accounts.
-5. Use the "Check exchange rate" option to check the exchange rate of a currency.
+5. Use the "Check exchange rate" option to check the exchange rate of a currency (please note, that it's calculated with USD by default).
 
 ## Classes
 
@@ -37,6 +37,7 @@ This is a simple Java GUI project that simulates a basic bank account system, wh
    - This class contains the main method and the user interface for the project.
    - It creates and stores instances of the `Account`, `SavingsAccount`, and `CheckingAccount` classes in an array.
    - It also provides methods for the user to perform basic transactions (e.g deposit, withdraw) and check exchange rates on the accounts.
+   - Allows to add new savings and checking accounts
 
 ## Requirements
 

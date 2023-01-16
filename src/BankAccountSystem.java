@@ -1,19 +1,24 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BankAccountSystem {
+
+    private static ArrayList<Account> accounts = new ArrayList<>();
+    private static int accountCount = 0;
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        Account[] accounts = new Account[3];
-        accounts[0] = new SavingsAccount(1000, "SAV-001", 0.02);
-        accounts[1] = new CheckingAccount(500, "CHK-001", -500);
-        accounts[2] = new SavingsAccount(2000, "SAV-002", 0.03);
+        accounts.add(new SavingsAccount(1000, "SAV-001", 0.02));
+        accounts.add(new CheckingAccount(500, "CHK-001", -500));
+        accounts.add(new SavingsAccount(2000, "SAV-002", 0.03));
 
         while (true) {
             System.out.println("1. Deposit");
             System.out.println("2. Withdraw");
             System.out.println("3. Check balance");
             System.out.println("4. Check exchange rate");
-            System.out.println("5. Exit");
+            System.out.println("5. Add account");
+            System.out.println("6. Exit");
             System.out.print("Enter your choice: ");
             int choice = input.nextInt();
             input.nextLine();
@@ -76,6 +81,9 @@ public class BankAccountSystem {
                     }
                     break;
                 case 5:
+                    addAccount(input);
+                    break;
+                case 6:
                     System.out.println("Thank you for using our system.");
                     return;
                 default:
@@ -85,12 +93,35 @@ public class BankAccountSystem {
             System.out.println();
         }
     }
-    public static Account findAccount(String accountNumber, Account[] accounts) {
+    public static Account findAccount(String accountNumber, ArrayList<Account> accounts) {
         for (Account account : accounts) {
             if (account.getAccountNumber().equals(accountNumber)) {
                 return account;
             }
         }
         return null;
+    }
+    private static void addAccount(Scanner input) {
+        System.out.print("Enter account type (S for savings, C for checking): ");
+        char type = input.nextLine().charAt(0);
+        if (type != 'S' && type != 'C') {
+            System.out.println("Invalid account type.");
+            return;
+        }
+        System.out.print("Enter account number: ");
+        String accountNumber = input.nextLine();
+        System.out.print("Enter starting balance: ");
+        double balance = input.nextDouble();
+        if (type == 'S') {
+            System.out.print("Enter interest rate: ");
+            double interestRate = input.nextDouble();
+            accounts.add(new SavingsAccount(balance, accountNumber, interestRate));
+            System.out.println("Savings account created.");
+        } else {
+            System.out.print("Enter overdraft limit: ");
+            double overdraftLimit = input.nextDouble();
+            accounts.add(new CheckingAccount(balance, accountNumber, overdraftLimit));
+            System.out.println("Checking account created.");
+        }
     }
 }
